@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:we_chat/Screens/auth/login_screens.dart';
 import 'package:we_chat/Screens/home_screens.dart';
 
 void main() {
   runApp(const MyApp());
 }
+//global object for accessing device screen size
+late Size mq;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -25,12 +28,12 @@ class MyApp extends StatelessWidget {
           //Icon style
           iconTheme: const IconThemeData(color: Colors.black,weight: 500),
 
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.greenAccent,
           centerTitle: true,
           titleTextStyle: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-            color: Colors.black87,
+            fontSize: 23,
+            fontWeight: FontWeight.w600,
+            color: Colors.black,
 
           )
 
@@ -38,7 +41,7 @@ class MyApp extends StatelessWidget {
 
 
       ),
-      home:const HomeScreen()
+      home:const LoginScreen()
 
     );
   }

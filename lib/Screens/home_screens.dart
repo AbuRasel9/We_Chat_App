@@ -14,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         //Home button add in
-        leading:  Icon(Icons.home,),
+        leading:  const Icon(Icons.home,),
         title: const Text("We Chat"),
         actions: [
           IconButton(
