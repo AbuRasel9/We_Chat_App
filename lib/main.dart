@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:we_chat/Screens/auth/login_screens.dart';
-import 'package:we_chat/Screens/home_screens.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:we_chat/Screens/splashScreen.dart';
+import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await _initializeApp();
+
+  //start full screen in splash screen
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  //for setting orientation to portrait only
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,DeviceOrientation.portraitDown]).then((value) => {
+    runApp(const MyApp())
+  });
 }
 //global object for accessing device screen size
 late Size mq;
@@ -14,7 +25,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'We Chat',
 
@@ -28,7 +39,7 @@ class MyApp extends StatelessWidget {
           //Icon style
           iconTheme: const IconThemeData(color: Colors.black,weight: 500),
 
-          backgroundColor: Colors.greenAccent,
+          backgroundColor: Colors.white54,
           centerTitle: true,
           titleTextStyle: const TextStyle(
             fontSize: 23,
@@ -41,9 +52,15 @@ class MyApp extends StatelessWidget {
 
 
       ),
-      home:const LoginScreen()
+      home: const splashScreen()
 
     );
   }
+}
+_initializeApp() async {
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
